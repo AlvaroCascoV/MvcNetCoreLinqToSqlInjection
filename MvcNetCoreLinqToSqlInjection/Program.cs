@@ -1,4 +1,5 @@
 using MvcNetCoreLinqToSqlInjection.Models;
+using MvcNetCoreLinqToSqlInjection.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +20,10 @@ builder.Services.AddSingleton<ICoche, Coche>(x => car);
 //builder.Services.AddSingleton<Coche>();
 //builder.Services.AddSingleton<Deportivo>();
 //builder.Services.AddSingleton<ICoche, Deportivo>();
+
+//Resolvemos los doctores, los repos suelen ir como transient
+builder.Services.AddTransient<RepositoryDoctoresSQLServer>();
+
 
 var app = builder.Build();
 

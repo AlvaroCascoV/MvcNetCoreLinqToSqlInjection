@@ -22,8 +22,10 @@ builder.Services.AddSingleton<ICoche, Coche>(x => car);
 //builder.Services.AddSingleton<ICoche, Deportivo>();
 
 //Resolvemos los doctores, los repos suelen ir como transient
-builder.Services.AddTransient<RepositoryDoctoresSQLServer>();
-
+//builder.Services.AddTransient<RepositoryDoctoresSQLServer>();
+//builder.Services.AddTransient<RepositoryDoctoresOracle>();
+builder.Services.AddTransient<IRepositoryDoctores, RepositoryDoctoresOracle>();
+//builder.Services.AddTransient<IRepositoryDoctores, RepositoryDoctoresSQLServer>();
 
 var app = builder.Build();
 
@@ -44,7 +46,7 @@ app.MapStaticAssets();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}")
+    pattern: "{controller=Home}/{action=Index}/{id?}", "{controller=Doctores}/{action=Index}/{idDoctor?}")
     .WithStaticAssets();
 
 

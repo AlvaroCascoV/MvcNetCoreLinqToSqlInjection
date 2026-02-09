@@ -14,6 +14,7 @@
             <th>Especialidad</th>
             <th>Salario</th>
             <th>Hospital</th>
+            <th>Accion</th>
         </tr>
     </thead>
     <tbody>
@@ -25,6 +26,10 @@
                 <td>@doc.Especialidad</td>
                 <td>@doc.Salario</td>
                 <td>@doc.IdHospital</td>
+                <td>
+                    <a asp-controller="Doctores" asp-action="Edit" asp-route-idDoctor="@doc.IdDoctor" class="btn btn-warning">Edit</a>
+                    <a asp-controller="Doctores" asp-action="Delete" asp-route-idDoctor="@doc.IdDoctor" class="btn btn-danger">Delete</a>
+                </td>
             </tr>
         }
     </tbody>

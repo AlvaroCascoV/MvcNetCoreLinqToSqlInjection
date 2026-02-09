@@ -7,9 +7,12 @@ namespace MvcNetCoreLinqToSqlInjection.Controllers
 {
     public class DoctoresController : Controller
     {
-        private RepositoryDoctoresSQLServer repo;
+        //private RepositoryDoctoresSQLServer repo;
+        //private RepositoryDoctoresOracle repo;
+        IRepositoryDoctores repo;
+
         //RECIBIMOS NUESTRO REPOSITORY
-        public DoctoresController(RepositoryDoctoresSQLServer repo)
+        public DoctoresController(/*RepositoryDoctoresSQLServer RepositoryDoctoresOracle*/ IRepositoryDoctores repo)
         {
             this.repo = repo;
         }
@@ -30,5 +33,21 @@ namespace MvcNetCoreLinqToSqlInjection.Controllers
             return RedirectToAction("Index");
         }
 
+        public async Task<IActionResult> Delete(int idDoctor)
+        {
+            await this.repo.DeleteDoctorAsync(idDoctor);
+            return RedirectToAction("Index");
+        }
+        public IActionResult Edit(int idDoctor)
+        {
+            Doctor doctor = this.repo.FindDoctor(idDoctor);
+            return View(doctor);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Edit(Doctor doc)
+        {
+            await this.repo.EditDoctorAsync(doc.IdHospital, doc.IdDoctor, doc.Apellido, doc.Especialidad, doc.Salario);
+            return RedirectToAction("Index");
+        }
     }
 }

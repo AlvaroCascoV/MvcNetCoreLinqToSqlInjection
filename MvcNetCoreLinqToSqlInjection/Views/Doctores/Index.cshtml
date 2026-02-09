@@ -1,8 +1,14 @@
 ﻿@model List<Doctor>
 
 <h1>Doctores SQLServer y Oracle DI</h1>
-
-<a asp-controller="Doctores" asp-action="Create">New Doctor</a>
+<ul>
+    <li style="list-style:none">
+        <a asp-controller="Doctores" asp-action="Create">New Doctor</a>
+    </li>
+    <li style="list-style:none">
+        <a asp-controller="Doctores" asp-action="DoctoresEspecialidad">DoctoresEspe</a>
+    </li>
+</ul>
 
 @if(Model != null)
 {

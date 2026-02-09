@@ -10,5 +10,6 @@ namespace MvcNetCoreLinqToSqlInjection.Repositories
         Task DeleteDoctorAsync(int idDoctor);
         Doctor FindDoctor(int idDoctor);
         Task EditDoctorAsync(int idHospital, int idDoctor, string apellido, string especialidad, int salario);
+        List<Doctor> GetDoctoresEspecialidad(string especialidad);
     }
 }

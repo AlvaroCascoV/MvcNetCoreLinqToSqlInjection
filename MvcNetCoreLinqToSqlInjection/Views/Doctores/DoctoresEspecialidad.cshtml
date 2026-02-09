@@ -1,0 +1,40 @@
+﻿@model List<Doctor>
+
+<h1>Doctores Especialidad</h1>
+
+<form method="post">
+    <label>Especialidad</label>
+    <input name="especialidad" type="text" class="form-control" />
+    <button class="btn btn-primary">Buscar</button>
+</form>
+
+@if (Model != null)
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Apellido</th>
+                <th>Especialidad</th>
+                <th>Salario</th>
+                <th>Hospital</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Doctor doc in Model)
+            {
+                <tr>
+                    <td>@doc.IdDoctor</td>
+                    <td>@doc.Apellido</td>
+                    <td>@doc.Especialidad</td>
+                    <td>@doc.Salario</td>
+                    <td>@doc.IdHospital</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h2 style="color:red">No se han podido cargar los doctores</h2>
+}
